@@ -6,4 +6,25 @@
     <string name="usuario">Usuario</string>
     <string name="confirmar_contrase_a">Confirmar Contraseña</string>
     <string name="registrar">Registrar</string>
+    <string name="usuarioLogin">Usuario</string>
+    <string name="contrase_aLogin">Contraseña</string>
+    <string name="login">login</string>
+    <string name="lvl8">lvl8</string>
+    <string name="lvl7">lvl7</string>
+    <string name="lvl6">lvl6</string>
+    <string name="lvl5">lvl5</string>
+    <string name="lvl4">lvl4</string>
+    <string name="lvl3">lvl3</string>
+    <string name="lvl2">lvl2</string>
+    <string name="lvl1">lvl1</string>
+    <string name="_3">/3</string>
+    <string name="_1">1</string>
+    <string name="respuesta1">respuesta1</string>
+    <string name="respuesta2">respuesta2</string>
+    <string name="respuesta3">respuesta3</string>
+    <string name="siguiente_pregunta">Siguiente pregunta</string>
+    <string name="usernametitle">usernameTitle</string>
+    <string name="question">question</string>
+    <string name="score">score</string>
+    <string name="introduce_tu_respuesta">Introduce tu respuesta</string>
 </resources>

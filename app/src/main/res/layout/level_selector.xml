@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background6"
+    tools:context=".viewModels.LevelSelectorViewModel">
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="304dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/usernametitle"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/bt_lvl1"
+        android:layout_width="106dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="136dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl1"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="loadLvl1"
+        app:srcCompat="@drawable/lvl1" />
+
+    <ImageButton
+        android:id="@+id/bt_lvl2"
+        android:layout_width="106dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="136dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl2"
+        android:scaleType="fitCenter"
+        android:onClick="loadLvl2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/level_locked" />
+
+    <ImageButton
+        android:id="@+id/bt_lvl3"
+        android:layout_width="106dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="136dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl3"
+        android:scaleType="fitCenter"
+        android:onClick="loadLvl3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/level_locked" />
+
+
+
+    <ImageButton
+        android:id="@+id/bt_lvl4"
+        android:layout_width="106dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="308dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl4"
+        android:scaleType="fitCenter"
+        android:onClick="loadLvl4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/level_locked" />
+
+    <ImageButton
+        android:id="@+id/bt_lvl5"
+        android:layout_width="106dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="308dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl5"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/level_locked" />
+
+    <ImageButton
+        android:id="@+id/bt_lvl6"
+        android:layout_width="106dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="472dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl6"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/level_locked" />
+
+    <ImageButton
+        android:id="@+id/bt_lvl7"
+        android:layout_width="106dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="472dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl7"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/level_locked" />
+
+    <ImageButton
+        android:id="@+id/bt_lvl8"
+        android:layout_width="106dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="472dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl8"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/level_locked" />
+
+    <ImageView
+        android:id="@+id/healthBar"
+        android:layout_width="80dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username"
+        app:srcCompat="@drawable/life_100" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/score"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

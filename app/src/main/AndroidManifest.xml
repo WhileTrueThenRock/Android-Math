@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,7 +15,25 @@
         android:theme="@style/Theme.GrigoreAdrianMaths"
         tools:targetApi="31">
         <activity
-            android:name=".RegisterPage"
+            android:name=".levels.Level4"
+            android:exported="false" />
+        <activity
+            android:name=".levels.Level3"
+            android:exported="false" />
+        <activity
+            android:name=".levels.Level2"
+            android:exported="false" />
+        <activity
+            android:name=".levels.Level1"
+            android:exported="false" />
+        <activity
+            android:name=".viewModels.LevelSelectorViewModel"
+            android:exported="false" />
+        <activity
+            android:name=".viewModels.LoginViewModel"
+            android:exported="false" />
+        <activity
+            android:name=".viewModels.RegisterViewModel"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

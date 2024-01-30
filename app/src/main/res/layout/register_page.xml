@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/android_register_login"
     android:padding="16dp">
 
     <TextView
@@ -10,63 +12,85 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:text="Introduce tus datos"
         android:textSize="24sp"
         android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/etNombre"
-        android:layout_width="3495dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="335dp"
         android:layout_height="50dp"
         android:layout_below="@id/tv_Registrar"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="18dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/edittext_bg"
         android:hint="@string/nombre" />
 
     <EditText
         android:id="@+id/etApellidos"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="335dp"
         android:layout_height="50dp"
         android:layout_below="@id/etNombre"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/edittext_bg"
         android:hint="@string/apellidos"/>
 
     <EditText
         android:id="@+id/etUsuario"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="335dp"
         android:layout_height="50dp"
         android:layout_below="@id/etApellidos"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/edittext_bg"
         android:hint="@string/usuario"/>
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="335dp"
         android:layout_height="50dp"
         android:layout_below="@id/etUsuario"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:hint="@string/contrasena"
+        android:background="@drawable/edittext_bg"
         android:inputType="textPassword"/>
 
     <EditText
         android:id="@+id/etPassword2"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="335dp"
         android:layout_height="50dp"
         android:layout_below="@id/etPassword"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:hint="@string/confirmar_contrase_a"
+        android:background="@drawable/edittext_bg"
         android:inputType="textPassword"/>
     <Button
         android:id="@+id/btRegistrar"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="335dp"
         android:layout_height="50dp"
         android:layout_below="@id/etPassword2"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="16dp"
+        android:onClick="register"
+        android:background="@drawable/button_bg"
         android:text="@string/registrar"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btRegistrar"
+        android:onClick="go"
+        android:text="Button" />
+
 
 </RelativeLayout>

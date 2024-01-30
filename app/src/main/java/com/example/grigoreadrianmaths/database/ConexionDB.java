@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class ConexionDB {
     private static Connection conexion = null;
     private static final String DRIVER = "org.postgresql.Driver";
-    private static final String URL = "jdbc:postgresql://192.168.20.61:5432/Pasajeros";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "1234";
+    private static final String URL = "jdbc:postgresql://mvs.sytes.net:12008/maths";
+    private static final String USER = "dam08";
+    private static final String PASSWORD = "X9741244P";
 
     public static Connection initDBConnection(){
         try {

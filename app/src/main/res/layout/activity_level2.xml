@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    tools:context=".levels.Level1">
+    <ImageView
+        android:id="@+id/healthBar"
+        android:layout_width="68dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="324dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/life_100" />
+    <TextView
+        android:id="@+id/tv_totalPreguntas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:text="@string/_1"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/totalPreguntas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_totalPreguntas"
+        android:layout_marginTop="28dp"
+        android:text="@string/_3"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/usernametitle"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text="@string/score"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_pregunta1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_totalPreguntas"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/question" />
+
+    <Button
+        android:id="@+id/bt_nextQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/bt3"
+        android:onClick="nextQuestionlvl2"
+        android:text="@string/siguiente_pregunta" />
+
+    <ImageButton
+        android:id="@+id/bt1"
+        android:layout_width="156dp"
+        android:layout_height="166dp"
+        android:layout_below="@+id/tv_pregunta1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl1"
+        android:scaleType="fitCenter"
+        android:onClick="nextQuestionlvl2"
+        app:srcCompat="@drawable/precio1" />
+
+    <ImageButton
+        android:id="@+id/bt2"
+        android:layout_width="156dp"
+        android:layout_height="166dp"
+        android:layout_below="@+id/tv_pregunta1"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="80dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl1"
+        android:scaleType="fitCenter"
+        android:onClick="nextQuestionlvl2"
+        app:srcCompat="@drawable/precio3" />
+
+    <ImageButton
+        android:id="@+id/bt3"
+        android:layout_width="156dp"
+        android:layout_height="166dp"
+        android:layout_below="@+id/bt2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl1"
+        android:scaleType="fitCenter"
+        android:onClick="nextQuestionlvl2"
+        app:srcCompat="@drawable/precio2" />
+
+</RelativeLayout>
