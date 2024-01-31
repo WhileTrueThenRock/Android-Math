@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.grigoreadrianmaths.R;
 import com.example.grigoreadrianmaths.dao.UserDAO;
@@ -43,6 +47,9 @@ public class LevelSelectorViewModel extends AppCompatActivity {
     private Level8 level8;
     private ImageButton lvl1,lvl2,lvl3,lvl4,lvl5,lvl6,lvl7,lvl8;
     private ImageView trophy,healthBar;
+    private Menu menu;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +65,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
         //trophy = findViewById(R.id.trophies);
         score = findViewById(R.id.tv_score);
         healthBar = findViewById(R.id.healthBar);
-
+        //toolbar = findViewById(R.id.myToolbar);
         lvl2.setEnabled(true);
         lvl3.setEnabled(false);
         lvl4.setEnabled(false);
@@ -72,10 +79,25 @@ public class LevelSelectorViewModel extends AppCompatActivity {
         usuario = findViewById(R.id.tv_username);
         username = LoginViewModel.userTitle;
         usuario.setText(username);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.pi_logo);
 
         updateHealth();
         loadStars();
         loadScore();
+    }
+
+    public boolean onCreateOptionsMenu (Menu menu) {
+        getMenuInflater().inflate(R.menu.mimenu,menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.item1) {
+            intent = new Intent(LevelSelectorViewModel.this, RankingViewModel.class);
+            startActivity(intent);
+        }
+        return true;
     }
 
     public void loadStars(){
@@ -178,9 +200,9 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                 }//-------------------NIVEL8---------------------
                 else if (estrellas == 1 && nivel == 8) {
                     lvl8.setImageResource(R.drawable.lvl8_1);
-                } else if (estrellas == 2 && nivel == 7) {
+                } else if (estrellas == 2 && nivel == 8) {
                     lvl8.setImageResource(R.drawable.lvl8_2);
-                } else if (estrellas == 3 && nivel == 7) {
+                } else if (estrellas == 3 && nivel == 8) {
                     lvl8.setImageResource(R.drawable.lvl8_3);
                 }
             }

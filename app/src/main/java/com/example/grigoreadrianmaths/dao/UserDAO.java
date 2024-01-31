@@ -4,7 +4,6 @@ import android.widget.Toast;
 
 import com.example.grigoreadrianmaths.database.ConexionDB;
 
-import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

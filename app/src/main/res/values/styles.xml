@@ -19,4 +19,15 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <!-- Estilo de la barra de acciones personalizado -->
+    <style name="CustomActionBar" parent="Widget.AppCompat.ActionBar">
+        <!-- Quitar el nombre de la barra de acciones -->
+        <item name="displayOptions">showHome|useLogo</item>
+        <!-- Cambiar el color de fondo de la barra de acciones -->
+        <item name="android:background">@color/black</item>
+        <!-- Cambiar el color del título de la barra de acciones (si es necesario) -->
+    </style>
+
+
 </resources>
