@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2"
+    android:id="@+id/myRelative_layout"
+    android:background="@drawable/background10_1"
     tools:context=".levels.Level1">
     <ImageView
         android:id="@+id/healthBar"
@@ -16,9 +17,10 @@
     <TextView
         android:id="@+id/tv_totalPreguntas"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="230dp"
-        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
         android:text="@string/_1"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -26,25 +28,29 @@
         android:id="@+id/totalPreguntas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_toRightOf="@id/tv_totalPreguntas"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="48dp"
         android:text="@string/_3"
         android:textSize="30sp"
         android:textStyle="bold" />
     <TextView
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
         android:text="@string/usernametitle"
         android:textSize="30sp"
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/tv_putuacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="38dp"
         android:text="Puntos:"
         android:textSize="30sp"
@@ -54,7 +60,8 @@
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="68dp"
         android:text="@string/score"
         android:textSize="30sp"
@@ -64,56 +71,60 @@
         android:id="@+id/tv_pregunta1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_below="@+id/tv_totalPreguntas"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="54dp"
         android:layout_marginBottom="10dp"
         android:textSize="18sp"
         android:textStyle="bold"
         android:text="@string/question" />
 
+
     <ImageButton
         android:id="@+id/bt1"
-        android:layout_width="156dp"
-        android:layout_height="166dp"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
         android:layout_below="@+id/tv_pregunta1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="400dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:contentDescription="@string/lvl1"
         android:scaleType="fitCenter"
         android:onClick="nextQuestionlvl2"
-        app:srcCompat="@drawable/precio1" />
+        app:srcCompat="@drawable/parking1" />
 
     <ImageButton
         android:id="@+id/bt2"
-        android:layout_width="156dp"
-        android:layout_height="166dp"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
         android:layout_below="@+id/tv_pregunta1"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/bt1"
+        android:layout_marginTop="400dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:contentDescription="@string/lvl1"
         android:scaleType="fitCenter"
         android:onClick="nextQuestionlvl2"
-        app:srcCompat="@drawable/precio3" />
+        app:srcCompat="@drawable/parking2" />
 
     <ImageButton
         android:id="@+id/bt3"
-        android:layout_width="156dp"
-        android:layout_height="166dp"
-        android:layout_below="@+id/bt2"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:layout_below="@+id/tv_pregunta1"
+        android:layout_toRightOf="@+id/bt2"
+        android:layout_marginLeft="15dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="400dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:contentDescription="@string/lvl1"
         android:scaleType="fitCenter"
         android:onClick="nextQuestionlvl2"
-        app:srcCompat="@drawable/precio2" />
+        app:srcCompat="@drawable/parking3" />
 
 </RelativeLayout>

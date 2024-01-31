@@ -91,6 +91,7 @@
         android:background="@null"
         android:contentDescription="@string/lvl5"
         android:scaleType="fitCenter"
+        android:onClick="loadLvl5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/level_locked" />
@@ -105,6 +106,7 @@
         android:background="@null"
         android:contentDescription="@string/lvl6"
         android:scaleType="fitCenter"
+        android:onClick="loadLvl6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/level_locked" />
@@ -118,6 +120,7 @@
         android:adjustViewBounds="true"
         android:background="@null"
         android:contentDescription="@string/lvl7"
+        android:onClick="loadLvl7"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -132,6 +135,7 @@
         android:adjustViewBounds="true"
         android:background="@null"
         android:contentDescription="@string/lvl8"
+        android:onClick="loadLvl8"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

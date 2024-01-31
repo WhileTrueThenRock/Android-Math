@@ -15,6 +15,18 @@
         android:theme="@style/Theme.GrigoreAdrianMaths"
         tools:targetApi="31">
         <activity
+            android:name=".levels.Level7"
+            android:exported="false" />
+        <activity
+            android:name=".levels.Level8"
+            android:exported="false" />
+        <activity
+            android:name=".levels.Level6"
+            android:exported="false" />
+        <activity
+            android:name=".levels.Level5"
+            android:exported="false" />
+        <activity
             android:name=".levels.Level4"
             android:exported="false" />
         <activity

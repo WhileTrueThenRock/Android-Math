@@ -19,33 +19,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="38dp"
+        android:textColor="@color/white"
         android:text="@string/_1"
         android:textSize="30dp"
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/totalPreguntas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
         android:layout_toRightOf="@id/tv_totalPreguntas"
-        android:layout_marginTop="28dp"
+        android:textColor="@color/white"
         android:text="@string/_3"
         android:textSize="30sp"
         android:textStyle="bold" />
     <TextView
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textColor="@color/white"
         android:text="@string/usernametitle"
         android:textSize="30sp"
         android:textStyle="bold" />
-
+    <TextView
+        android:id="@+id/tv_putuacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="28dp"
+        android:textColor="@color/white"
+        android:text="Puntos:"
+        android:textSize="30sp"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="68dp"
+        android:textColor="@color/white"
         android:text="@string/score"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -54,9 +70,11 @@
         android:id="@+id/tv_pregunta1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tv_totalPreguntas"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="34dp"
         android:layout_marginBottom="10dp"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -68,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="65dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="530dp"
         android:ems="10"
         android:hint="@string/introduce_tu_respuesta"
         android:inputType="number" />

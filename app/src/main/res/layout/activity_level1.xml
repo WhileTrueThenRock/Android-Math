@@ -20,8 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/healthBar"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:text="@string/_1"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -31,8 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_totalPreguntas"
         android:layout_below="@+id/healthBar"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:text="@string/_3"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -40,16 +42,31 @@
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="88dp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
         android:text="@string/usernametitle"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_putuacion"
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="78dp"
+        android:text="Puntos:"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginLeft="50dp"
         android:text="@string/score"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -64,7 +81,7 @@
         style="@style/myTextViewStyles"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/healthBar"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="104dp"
         android:layout_marginBottom="10dp"
         android:text="@string/question" />
 
@@ -75,7 +92,7 @@
         android:layout_below="@+id/tv_pregunta1"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="118dp">
+        android:layout_marginTop="58dp">
 
         <RadioButton
             android:id="@+id/respuesta1"

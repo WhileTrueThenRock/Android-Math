@@ -24,7 +24,6 @@ import java.util.Random;
 
 public class Level2 extends AppCompatActivity {
     private ImageView bt1,bt2,bt3;
-    private Button nextQuestion;
     private TextView userName,totalQuestions, pregunta,score;
     private Intent intent;
     private static int numeroDePreguntas = 0;
@@ -44,7 +43,6 @@ public class Level2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level2);
         userName = findViewById(R.id.tv_username);
-        nextQuestion = findViewById(R.id.bt_nextQuestion);
         totalQuestions = findViewById(R.id.tv_totalPreguntas);
         pregunta = findViewById(R.id.tv_pregunta1);
         healthBar = findViewById(R.id.healthBar);
@@ -116,9 +114,6 @@ public class Level2 extends AppCompatActivity {
             if(numeroDePreguntas<3)
                 totalQuestions.setText(numero);
 
-
-            if(numeroDePreguntas==2)
-                nextQuestion.setText("Finalizar");
 
             if(numeroDePreguntas==3){
                 intent = new Intent(Level2.this, LevelSelectorViewModel.class);

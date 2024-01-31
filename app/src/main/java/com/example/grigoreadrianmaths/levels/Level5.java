@@ -5,12 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,9 +22,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Level4 extends AppCompatActivity {
-    private Button nextQuestion;
-    private EditText et_respuesta;
+public class Level5 extends AppCompatActivity {
+    private ImageView bt1,bt2,bt3;
     private TextView userName,totalQuestions, pregunta,score;
     private Intent intent;
     private static int numeroDePreguntas = 0;
@@ -41,21 +37,20 @@ public class Level4 extends AppCompatActivity {
     private Connection connection;
     public static int vidas = 5;
     private ImageView healthBar;
-    private RelativeLayout relativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level4);
+        setContentView(R.layout.activity_level5);
         userName = findViewById(R.id.tv_username);
-        nextQuestion = findViewById(R.id.bt_nextQuestion);
         totalQuestions = findViewById(R.id.tv_totalPreguntas);
         pregunta = findViewById(R.id.tv_pregunta1);
         healthBar = findViewById(R.id.healthBar);
         score = findViewById(R.id.tv_score);
-        et_respuesta = findViewById(R.id.et_respuesta);
-        relativeLayout = findViewById(R.id.myRelative_layout);
         String username = LoginViewModel.userTitle;
         userName.setText(username);
+        bt1 = findViewById(R.id.bt1);
+        bt2 = findViewById(R.id.bt2);
+        bt3 = findViewById(R.id.bt3);
 
         connection = ConexionDB.initDBConnection();
         userDAO = new UserDAO(connection);
@@ -64,9 +59,9 @@ public class Level4 extends AppCompatActivity {
         aciertos = 0;
         preguntas.clear();
 
-        preguntas.add("¿Cuántos cuadrados puedes llegar a contar?"); //40
-        preguntas.add("¿Cuántos animales ves en la foto?"); //11
-        preguntas.add("Resuelve el problema: "); //39
+        preguntas.add("¿Cuál de las siguientes imágenes es la fórmula cuadrática?");
+        preguntas.add("Indica cuál es la fórmula de la relatividad de Albert Einstein");
+        preguntas.add("Selecciona el teorema de Pitágoras");
 
 
         if(vidas == 4)
@@ -82,7 +77,6 @@ public class Level4 extends AppCompatActivity {
 
         loadQuestions();
         loadScore();
-
     }
 
     public void loadQuestions() {
@@ -90,64 +84,63 @@ public class Level4 extends AppCompatActivity {
         preguntaActualText = (String) preguntas.get(preguntaAleatoria);
         pregunta.setText(preguntaActualText);
 
-        if(preguntaActualText.contains("cuadrados")){
-            relativeLayout.setBackgroundResource(R.drawable.background7_1);
+        if(preguntaActualText.contains("cuadrática")){
+            bt1.setImageResource(R.drawable.pitagoras2);
+            bt2.setImageResource(R.drawable.pitagoras3);
+            bt3.setImageResource(R.drawable.pitagoras1);
         }
-        else if(preguntaActualText.contains("animales")){
-            relativeLayout.setBackgroundResource(R.drawable.background7_2);
-        }
-        else if(preguntaActualText.contains("problema")){
-            relativeLayout.setBackgroundResource(R.drawable.background7_3);
+        else if(preguntaActualText.contains("Einstein")){
+            bt1.setImageResource(R.drawable.relatividad2);
+            bt2.setImageResource(R.drawable.relatividad1);
+            bt3.setImageResource(R.drawable.relatividad3);
 
+        }
+        else if(preguntaActualText.contains("Pitágoras")){
+            bt1.setImageResource(R.drawable.formula1);
+            bt2.setImageResource(R.drawable.formula2);
+            bt3.setImageResource(R.drawable.formula3);
         }
 
         preguntas.remove(preguntaAleatoria); // Eliminar la pregunta mostrada de la lista
     }
 
     public void nextQuestionlvl2(View view) {
-        if(TextUtils.isEmpty(et_respuesta.getText().toString())){
-            Toast.makeText(this, "Debes introducir una respuesta", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        int resultado = Integer.parseInt(et_respuesta.getText().toString());
         try {
             numeroDePreguntas++;
             String numero= String.valueOf(numeroDePreguntas+1);
             if(numeroDePreguntas<3)
                 totalQuestions.setText(numero);
 
-            if(numeroDePreguntas==2)
-                nextQuestion.setText("Finalizar");
 
             if(numeroDePreguntas==3){
-                intent = new Intent(Level4.this, LevelSelectorViewModel.class);
+                intent = new Intent(Level5.this, LevelSelectorViewModel.class);
                 startActivity(intent);
             }
 
-            if (preguntaActualText.contains("cuadrados") && resultado==40) {
+            if (preguntaActualText.contains("cuadrática") && view.getId() == R.id.bt3) {
                 aciertos++;
                 if (vidas < 5)
                     vidas++;
                 correct();
-                updateScoreLvl4();
+                updateScoreLvl5();
                 loadScore();
                 Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
 
-            } else if (preguntaActualText.contains("animales") && resultado==11) {
+            } else if (preguntaActualText.contains("Einstein") && view.getId() == R.id.bt2) {
                 aciertos++;
                 if (vidas < 5)
                     vidas++;
                 correct();
-                updateScoreLvl4();
+                updateScoreLvl5();
                 loadScore();
                 Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
 
-            }  else if (preguntaActualText.contains("problema") && resultado==39) {
+            }  else if (preguntaActualText.contains("Pitágoras") && view.getId() == R.id.bt1) {
                 aciertos++;
                 if (vidas < 5)
                     vidas++;
                 correct();
-                updateScoreLvl4();
+                updateScoreLvl5();
                 loadScore();
                 Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
             }
@@ -172,9 +165,8 @@ public class Level4 extends AppCompatActivity {
                 healthBar.setImageResource(R.drawable.life_0);
             }
 
-            updateStarsLvl4();
+            updateStarsLvl5();
             loadQuestions();
-            et_respuesta.setText("");
 
         }catch (Exception e){
         }
@@ -190,7 +182,7 @@ public class Level4 extends AppCompatActivity {
         mediaPlayer.start();
     }
 
-    public void updateScoreLvl4(){
+    public void updateScoreLvl5(){
         int score =1;
         String username = LoginViewModel.userTitle;
         try {
@@ -205,11 +197,11 @@ public class Level4 extends AppCompatActivity {
         }
     }
 
-    public void updateStarsLvl4(){
+    public void updateStarsLvl5(){
         int score = aciertos;
         String username =LoginViewModel.userTitle;
         try {
-            if(userDAO.registerStars(username,4,score)){
+            if(userDAO.registerStars(username,5,score)){
                 Toast.makeText(this, "puntuacion registrada", Toast.LENGTH_SHORT).show();
             }
             else{

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,6 @@ import java.util.Random;
 
 public class Level3 extends AppCompatActivity {
     private ImageView bt1,bt2,bt3;
-    private Button nextQuestion;
     private TextView userName,totalQuestions, pregunta,score;
     private Intent intent;
     private static int numeroDePreguntas = 0;
@@ -38,16 +38,17 @@ public class Level3 extends AppCompatActivity {
     private Connection connection;
     public static int vidas = 5;
     private ImageView healthBar;
+    private RelativeLayout relativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level3);
         userName = findViewById(R.id.tv_username);
-        nextQuestion = findViewById(R.id.bt_nextQuestion);
         totalQuestions = findViewById(R.id.tv_totalPreguntas);
         pregunta = findViewById(R.id.tv_pregunta1);
         healthBar = findViewById(R.id.healthBar);
         score = findViewById(R.id.tv_score);
+        relativeLayout = findViewById(R.id.myRelative_layout);
         String username =LoginViewModel.userTitle;
         userName.setText(username);
         bt1 = findViewById(R.id.bt1);
@@ -88,17 +89,20 @@ public class Level3 extends AppCompatActivity {
         pregunta.setText(preguntaActualText);
 
         if(preguntaActualText.contains("ladrillo")){
+            relativeLayout.setBackgroundResource(R.drawable.background3);
             bt1.setImageResource(R.drawable.kg2);
             bt2.setImageResource(R.drawable.kg3);
             bt3.setImageResource(R.drawable.kg4);
         }
         else if(preguntaActualText.contains("caracol")){
+            relativeLayout.setBackgroundResource(R.drawable.background4);
             bt1.setImageResource(R.drawable.days7);
             bt2.setImageResource(R.drawable.days6);
             bt3.setImageResource(R.drawable.days5);
 
         }
         else if(preguntaActualText.contains("cuadrado")){
+            relativeLayout.setBackgroundResource(R.drawable.background2);
             bt1.setImageResource(R.drawable.square);
             bt2.setImageResource(R.drawable.triangle);
             bt3.setImageResource(R.drawable.cicrcle);
@@ -113,10 +117,6 @@ public class Level3 extends AppCompatActivity {
             String numero= String.valueOf(numeroDePreguntas+1);
             if(numeroDePreguntas<3)
                 totalQuestions.setText(numero);
-
-
-            if(numeroDePreguntas==2)
-                nextQuestion.setText("Finalizar");
 
             if(numeroDePreguntas==3){
                 intent = new Intent(Level3.this, LevelSelectorViewModel.class);
