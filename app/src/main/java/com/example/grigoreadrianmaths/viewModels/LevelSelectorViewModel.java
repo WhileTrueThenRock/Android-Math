@@ -52,6 +52,14 @@ public class LevelSelectorViewModel extends AppCompatActivity {
     private Menu menu;
     private MediaPlayer mediaPlayer;
     private ConstraintLayout constraintLayout;
+    private boolean lvl1Enabled = true;
+    private boolean lvl2Enabled = true;
+    private boolean lvl3Enabled = true;
+    private boolean lvl4Enabled = true;
+    private boolean lvl5Enabled = true;
+    private boolean lvl6Enabled = true;
+    private boolean lvl7Enabled = true;
+    private boolean lvl8Enabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,35 +149,37 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                     lvl1.setImageResource(R.drawable.lvl1_1);
                     lvl2.setEnabled(true);
                     lvl2.setImageResource(R.drawable.lvl2);
-                    lvl1.setEnabled(false);
+                    //lvl1.setEnabled(false);
+                    lvl1Enabled = false;
                 } else if (estrellas == 2 && nivel == 1) {
                     lvl1.setImageResource(R.drawable.lvl1_2);
                     lvl2.setEnabled(true);
                     lvl2.setImageResource(R.drawable.lvl2);
-                    lvl1.setEnabled(false);
+                    //lvl1.setEnabled(false);
+                    lvl1Enabled = false;
                 } else if (estrellas == 3 && nivel == 1) {
                     lvl1.setImageResource(R.drawable.lvl1_3);
                     lvl2.setEnabled(true);
                     lvl2.setImageResource(R.drawable.lvl2);
-                    lvl1.setEnabled(false);
+                    lvl1Enabled = false;
                 }//-------------------NIVEL2---------------------
                 else if (estrellas == 1 && nivel == 2) {
                     lvl2.setImageResource(R.drawable.lvl2_1);
                     lvl3.setEnabled(true);
                     lvl3.setImageResource(R.drawable.lvl3);
-                    lvl2.setEnabled(false);
+                    lvl2Enabled = false;
                     constraintLayout.setBackgroundResource(R.drawable.bg_bronze);
                 } else if (estrellas == 2 && nivel == 2) {
                     lvl2.setImageResource(R.drawable.lvl2_2);
                     lvl3.setEnabled(true);
                     lvl3.setImageResource(R.drawable.lvl3);
-                    lvl2.setEnabled(false);
+                    lvl2Enabled = false;
                     constraintLayout.setBackgroundResource(R.drawable.bg_bronze);
                 } else if (estrellas == 3 && nivel == 2) {
                     lvl2.setImageResource(R.drawable.lvl2_3);
                     lvl3.setEnabled(true);
                     lvl3.setImageResource(R.drawable.lvl3);
-                    lvl2.setEnabled(false);
+                    lvl2Enabled = false;
                     constraintLayout.setBackgroundResource(R.drawable.bg_bronze);
                 }//-------------------NIVEL3---------------------
                 else if (estrellas == 1 && nivel == 3) {
@@ -178,12 +188,12 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                     lvl3.setImageResource(R.drawable.lvl3_2);
                     lvl4.setEnabled(true);
                     lvl4.setImageResource(R.drawable.lvl4);
-                    lvl3.setEnabled(false);
+                    lvl3Enabled = false;
                 } else if (estrellas == 3 && nivel == 3) {
                     lvl3.setImageResource(R.drawable.lvl3_3);
                     lvl4.setEnabled(true);
                     lvl4.setImageResource(R.drawable.lvl4);
-                    lvl3.setEnabled(false);
+                    lvl3Enabled = false;
                 }//-------------------NIVEL4---------------------
                 else if (estrellas == 1 && nivel == 4) {
                     lvl4.setImageResource(R.drawable.lvl4_1);
@@ -191,13 +201,13 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                     lvl4.setImageResource(R.drawable.lvl4_2);
                     lvl5.setEnabled(true);
                     lvl5.setImageResource(R.drawable.lvl5);
-                    lvl4.setEnabled(false);
+                    lvl4Enabled = false;
                     constraintLayout.setBackgroundResource(R.drawable.bg_silver);
                 } else if (estrellas == 3 && nivel == 4) {
                     lvl4.setImageResource(R.drawable.lvl4_3);
                     lvl5.setEnabled(true);
                     lvl5.setImageResource(R.drawable.lvl5);
-                    lvl4.setEnabled(false);
+                    lvl4Enabled = false;
                     constraintLayout.setBackgroundResource(R.drawable.bg_silver);
                 }//-------------------NIVEL5---------------------
                 else if (estrellas == 1 && nivel == 5) {
@@ -208,7 +218,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                     lvl5.setImageResource(R.drawable.lvl5_3);
                     lvl6.setEnabled(true);
                     lvl6.setImageResource(R.drawable.lvl6);
-                    lvl5.setEnabled(false);
+                    lvl5Enabled = false;
                 }//-------------------NIVEL6---------------------
                 else if (estrellas == 1 && nivel == 6) {
                     lvl6.setImageResource(R.drawable.lvl6_1);
@@ -218,7 +228,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                     lvl6.setImageResource(R.drawable.lvl6_3);
                     lvl7.setEnabled(true);
                     lvl7.setImageResource(R.drawable.lvl7);
-                    lvl6.setEnabled(false);
+                    lvl6Enabled = false;
                     constraintLayout.setBackgroundResource(R.drawable.bg_gold);
                 }//-------------------NIVEl7---------------------
                 else if (estrellas == 1 && nivel == 7) {
@@ -229,7 +239,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                     lvl7.setImageResource(R.drawable.lvl7_3);
                     lvl8.setEnabled(true);
                     lvl8.setImageResource(R.drawable.lvl8);
-                    lvl7.setEnabled(false);
+                    lvl7Enabled = false;
                 }//-------------------NIVEL8---------------------
                 else if (estrellas == 1 && nivel == 8) {
                     lvl8.setImageResource(R.drawable.lvl8_1);
@@ -237,6 +247,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                     lvl8.setImageResource(R.drawable.lvl8_2);
                 } else if (estrellas == 3 && nivel == 8) {
                     lvl8.setImageResource(R.drawable.lvl8_3);
+                    lvl8Enabled = false;
                     constraintLayout.setBackgroundResource(R.drawable.bg_platinum);
                 }
             }
@@ -301,49 +312,88 @@ public class LevelSelectorViewModel extends AppCompatActivity {
 
 
     public void loadLvl1(View view){
-        if(lvl1.isEnabled()){
-            intent = new Intent(LevelSelectorViewModel.this, Level1.class);
-            startActivity(intent);
-        }
-        else{
+        if(lvl1Enabled==false){
             intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
             startActivity(intent);
         }
+        else{
+            intent = new Intent(LevelSelectorViewModel.this, Level1.class);
+            startActivity(intent);
+        }
+
 
     }
 
     public void loadLvl2(View view){
-        intent = new Intent(LevelSelectorViewModel.this, Level2.class);
-        startActivity(intent);
+        if(lvl2Enabled==false){
+            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(LevelSelectorViewModel.this, Level2.class);
+            startActivity(intent);
+        }
     }
     public void loadLvl3(View view){
-        intent = new Intent(LevelSelectorViewModel.this, Level3.class);
-        startActivity(intent);
+        if(lvl3Enabled==false){
+            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(LevelSelectorViewModel.this, Level3.class);
+            startActivity(intent);
+        }
     }
     public void loadLvl4(View view){
-        intent = new Intent(LevelSelectorViewModel.this, Level4.class);
-        startActivity(intent);
+        if(lvl4Enabled==false){
+            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(LevelSelectorViewModel.this, Level4.class);
+            startActivity(intent);
+        }
     }
     public void loadLvl5(View view){
-        intent = new Intent(LevelSelectorViewModel.this, Level5.class);
-        startActivity(intent);
+        if(lvl5Enabled==false){
+            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(LevelSelectorViewModel.this, Level5.class);
+            startActivity(intent);
+        }
     }
     public void loadLvl6(View view){
-        intent = new Intent(LevelSelectorViewModel.this, Level6.class);
-        startActivity(intent);
+        if(lvl6Enabled==false){
+            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(LevelSelectorViewModel.this, Level6.class);
+            startActivity(intent);
+        }
     }
     public void loadLvl7(View view){
-        intent = new Intent(LevelSelectorViewModel.this, Level7.class);
-        startActivity(intent);
+        if(lvl7Enabled==false){
+            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(LevelSelectorViewModel.this, Level7.class);
+            startActivity(intent);
+        }
     }
     public void loadLvl8(View view){
         intent = new Intent(LevelSelectorViewModel.this, Level8.class);
-        startActivity(intent);
-    }
-
-    public void mainMenu(View view){
-        intent = new Intent(LevelSelectorViewModel.this, LevelSelectorViewModel.class);
-        startActivity(intent);
+        if(lvl8Enabled==false){
+            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(LevelSelectorViewModel.this, Level8.class);
+            startActivity(intent);
+        }
     }
 
     public void logOut(View view){
