@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.grigoreadrianmaths.R;
 import com.example.grigoreadrianmaths.dao.UserDAO;
 import com.example.grigoreadrianmaths.database.ConexionDB;
+import com.example.grigoreadrianmaths.viewModels.GameOverViewModel;
 import com.example.grigoreadrianmaths.viewModels.LevelSelectorViewModel;
 import com.example.grigoreadrianmaths.viewModels.LoginViewModel;
 
@@ -119,10 +120,6 @@ public class Level4 extends AppCompatActivity {
             if(numeroDePreguntas==2)
                 nextQuestion.setText("Finalizar");
 
-            if(numeroDePreguntas==3){
-                intent = new Intent(Level4.this, LevelSelectorViewModel.class);
-                startActivity(intent);
-            }
 
             if (preguntaActualText.contains("cuadrados") && resultado==40) {
                 aciertos++;
@@ -131,7 +128,6 @@ public class Level4 extends AppCompatActivity {
                 correct();
                 updateScoreLvl4();
                 loadScore();
-                Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
 
             } else if (preguntaActualText.contains("animales") && resultado==11) {
                 aciertos++;
@@ -140,7 +136,6 @@ public class Level4 extends AppCompatActivity {
                 correct();
                 updateScoreLvl4();
                 loadScore();
-                Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
 
             }  else if (preguntaActualText.contains("problema") && resultado==39) {
                 aciertos++;
@@ -149,12 +144,17 @@ public class Level4 extends AppCompatActivity {
                 correct();
                 updateScoreLvl4();
                 loadScore();
-                Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
             }
             else{
                 vidas--;
                 incorrect();
-                Toast.makeText(this, "total vidas: "+vidas, Toast.LENGTH_SHORT).show();
+            }
+
+            if(numeroDePreguntas==3){
+                intent = new Intent(Level4.this, LevelSelectorViewModel.class);
+                intent.putExtra("vidas", vidas);
+                //intent.putExtra("nivel", 1);
+                startActivity(intent);
             }
 
 
@@ -170,6 +170,10 @@ public class Level4 extends AppCompatActivity {
                 healthBar.setImageResource(R.drawable.life_5);
             else if(vidas == 0) {
                 healthBar.setImageResource(R.drawable.life_0);
+                gameOver();
+                resetProgress();
+                intent = new Intent(Level4.this, GameOverViewModel.class);
+                startActivity(intent);
             }
 
             updateStarsLvl4();
@@ -180,6 +184,24 @@ public class Level4 extends AppCompatActivity {
         }
 
     }
+
+    public void resetProgress(){
+        String username =LoginViewModel.userTitle;
+        try {
+            if(userDAO.resetProgress(username)){
+                Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void gameOver(){
+        mediaPlayer = MediaPlayer.create(this,R.raw.game_over);
+        mediaPlayer.start();
+    }
+
+
     public void correct(){
         mediaPlayer = MediaPlayer.create(this,R.raw.correct);
         mediaPlayer.start();
@@ -195,7 +217,6 @@ public class Level4 extends AppCompatActivity {
         String username = LoginViewModel.userTitle;
         try {
             if(userDAO.registerScore(username,score)){
-                Toast.makeText(this, "puntuacion registrada", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "Nada que actualizar", Toast.LENGTH_SHORT).show();
@@ -210,7 +231,6 @@ public class Level4 extends AppCompatActivity {
         String username =LoginViewModel.userTitle;
         try {
             if(userDAO.registerStars(username,4,score)){
-                Toast.makeText(this, "puntuacion registrada", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "Nada que actualizar", Toast.LENGTH_SHORT).show();

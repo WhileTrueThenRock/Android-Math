@@ -201,5 +201,53 @@ public class UserDAO {
 
 
 
+        public boolean resetProgress(String username) throws SQLException {
+            if (!initDBConnection()) {
+                return false;
+            }
+
+            try {
+                // 1. Registrar la puntuación en el ranking
+                int currentPoints = loadScore(username);
+                registerScoreInRanking(username, currentPoints);
+
+
+                String query = "UPDATE users SET points = 0, stars_lvl1 = 0, stars_lvl2 = 0, stars_lvl3 = 0, " +
+                        "stars_lvl4 = 0, stars_lvl5 = 0, stars_lvl6 = 0, stars_lvl7 = 0, stars_lvl8 = 0 " +
+                        "WHERE usuario = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, username);
+
+                int rowsAffected = statement.executeUpdate();
+
+                return rowsAffected > 0;
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                closeDBConnection();
+            }
+        }
+
+    private void registerScoreInRanking(String username, int score) {
+        if (!initDBConnection()) {
+            return;
+        }
+
+        try {
+            String query = "UPDATE users SET rankingPoints = ? WHERE usuario = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, score);
+            statement.setString(2, username);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
 
 }

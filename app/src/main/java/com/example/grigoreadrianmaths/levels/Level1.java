@@ -15,8 +15,10 @@ import android.widget.Toast;
 import com.example.grigoreadrianmaths.R;
 import com.example.grigoreadrianmaths.dao.UserDAO;
 import com.example.grigoreadrianmaths.database.ConexionDB;
+import com.example.grigoreadrianmaths.viewModels.GameOverViewModel;
 import com.example.grigoreadrianmaths.viewModels.LevelSelectorViewModel;
 import com.example.grigoreadrianmaths.viewModels.LoginViewModel;
+import com.example.grigoreadrianmaths.viewModels.RankingViewModel;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -135,6 +137,7 @@ import java.util.Random;
 
     }
 
+
     public void nextQuestion(View view) {
         if(!r1.isChecked() && !r2.isChecked() && !r3.isChecked()){
             Toast.makeText(this, "Selecciona al menos una opcion", Toast.LENGTH_SHORT).show();
@@ -153,10 +156,7 @@ import java.util.Random;
 
             }
 
-            if(numeroDePreguntas==3){
-                intent = new Intent(Level1.this, LevelSelectorViewModel.class);
-                startActivity(intent);
-            }
+
 
         if (preguntaActualText.contains("granja") && r2.isChecked()) {
             aciertos++;
@@ -165,7 +165,6 @@ import java.util.Random;
             correct();
             updateScoreLvl1();
             loadScore();
-            Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
         } else if (preguntaActualText.contains("sino la mitad de 6?") && r3.isChecked()) {
             aciertos++;
             if (vidas < 5)
@@ -173,7 +172,6 @@ import java.util.Random;
             correct();
             updateScoreLvl1();
             loadScore();
-            Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
         }  else if (preguntaActualText.contains("edades") && r1.isChecked()) {
             aciertos++;
             if (vidas < 5)
@@ -181,36 +179,61 @@ import java.util.Random;
             correct();
             updateScoreLvl1();
             loadScore();
-            Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
         }
         else{
             vidas--;
             incorrect();
-            Toast.makeText(this, "total vidas: "+vidas, Toast.LENGTH_SHORT).show();
         }
+            if(numeroDePreguntas==3){
+                intent = new Intent(Level1.this, LevelSelectorViewModel.class);
+                intent.putExtra("vidas", vidas);
+                //intent.putExtra("nivel", 1);
+                startActivity(intent);
+            }
+
+            if(vidas >= 5)
+                healthBar.setImageResource(R.drawable.life_100);
+            else if(vidas == 4)
+                healthBar.setImageResource(R.drawable.life_75);
+            else if(vidas == 3)
+                healthBar.setImageResource(R.drawable.life_50);
+            else if(vidas == 2)
+                healthBar.setImageResource(R.drawable.life_25);
+            else if(vidas == 1) {
+                healthBar.setImageResource(R.drawable.life_5);
+            }else if(vidas == 0){
+                healthBar.setImageResource(R.drawable.life_0);
+                gameOver();
+                resetProgress();
+                intent = new Intent(Level1.this, GameOverViewModel.class);
+                startActivity(intent);
+            }
 
 
-        if(vidas >= 5)
-            healthBar.setImageResource(R.drawable.life_100);
-        else if(vidas == 4)
-            healthBar.setImageResource(R.drawable.life_75);
-        else if(vidas == 3)
-            healthBar.setImageResource(R.drawable.life_50);
-        else if(vidas == 2)
-            healthBar.setImageResource(R.drawable.life_25);
-        else if(vidas == 1)
-            healthBar.setImageResource(R.drawable.life_5);
-        else if(vidas == 0) {
-            healthBar.setImageResource(R.drawable.life_0);
-        }
+
 
         updateStarsLvl1();
         loadQuestions();
-
         }catch (Exception e){
         }
-
     }
+    public void resetProgress(){
+        String username =LoginViewModel.userTitle;
+        try {
+            if(userDAO.resetProgress(username)){
+                Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void gameOver(){
+        mediaPlayer = MediaPlayer.create(this,R.raw.game_over);
+        mediaPlayer.start();
+    }
+
+
     public void correct(){
         mediaPlayer = MediaPlayer.create(this,R.raw.correct);
         mediaPlayer.start();
@@ -227,7 +250,6 @@ import java.util.Random;
 
         try {
             if(userDAO.registerScore(username,score)){
-                Toast.makeText(this, "puntuacion registrada", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
@@ -242,7 +264,6 @@ import java.util.Random;
         String username =LoginViewModel.userTitle;
         try {
             if(userDAO.registerStars(username,1,score)){
-                Toast.makeText(this, "puntuacion registrada", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "No se ha podido actualizar", Toast.LENGTH_SHORT).show();

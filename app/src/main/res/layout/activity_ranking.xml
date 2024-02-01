@@ -16,4 +16,17 @@
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:text="TextView" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/lvl1"
+        android:scaleType="fitCenter"
+        android:onClick="MainMenu"
+        app:srcCompat="@drawable/mainmenu" />
 </RelativeLayout>

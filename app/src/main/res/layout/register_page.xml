@@ -6,6 +6,46 @@
     android:background="@drawable/android_register_login"
     android:padding="16dp">
 
+    <ImageView
+        android:id="@+id/error1"
+        android:layout_width="20dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="333dp"
+        android:layout_marginTop="146dp"
+        app:srcCompat="@drawable/x" />
+
+    <ImageView
+        android:id="@+id/error2"
+        android:layout_width="20dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="333dp"
+        android:layout_marginTop="213dp"
+        app:srcCompat="@drawable/x" />
+
+    <ImageView
+        android:id="@+id/error3"
+        android:layout_width="20dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="333dp"
+        android:layout_marginTop="279dp"
+        app:srcCompat="@drawable/x" />
+
+    <ImageView
+        android:id="@+id/error4"
+        android:layout_width="20dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="333dp"
+        android:layout_marginTop="346dp"
+        app:srcCompat="@drawable/x" />
+
+    <ImageView
+        android:id="@+id/error5"
+        android:layout_width="20dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="333dp"
+        android:layout_marginTop="410dp"
+        app:srcCompat="@drawable/x" />
+
     <TextView
         android:id="@+id/tv_Registrar"
         android:layout_width="wrap_content"
@@ -20,7 +60,7 @@
     <EditText
         android:id="@+id/etNombre"
         android:layout_centerHorizontal="true"
-        android:layout_width="335dp"
+        android:layout_width="305dp"
         android:layout_height="50dp"
         android:layout_below="@id/tv_Registrar"
         android:layout_marginTop="18dp"
@@ -31,7 +71,7 @@
     <EditText
         android:id="@+id/etApellidos"
         android:layout_centerHorizontal="true"
-        android:layout_width="335dp"
+        android:layout_width="305dp"
         android:layout_height="50dp"
         android:layout_below="@id/etNombre"
         android:layout_marginTop="8dp"
@@ -42,7 +82,7 @@
     <EditText
         android:id="@+id/etUsuario"
         android:layout_centerHorizontal="true"
-        android:layout_width="335dp"
+        android:layout_width="305dp"
         android:layout_height="50dp"
         android:layout_below="@id/etApellidos"
         android:layout_marginTop="8dp"
@@ -53,7 +93,7 @@
     <EditText
         android:id="@+id/etPassword"
         android:layout_centerHorizontal="true"
-        android:layout_width="335dp"
+        android:layout_width="305dp"
         android:layout_height="50dp"
         android:layout_below="@id/etUsuario"
         android:layout_marginTop="8dp"
@@ -65,7 +105,7 @@
     <EditText
         android:id="@+id/etPassword2"
         android:layout_centerHorizontal="true"
-        android:layout_width="335dp"
+        android:layout_width="305dp"
         android:layout_height="50dp"
         android:layout_below="@id/etPassword"
         android:layout_marginTop="8dp"
@@ -76,7 +116,7 @@
     <Button
         android:id="@+id/btRegistrar"
         android:layout_centerHorizontal="true"
-        android:layout_width="335dp"
+        android:layout_width="305dp"
         android:layout_height="50dp"
         android:layout_below="@id/etPassword2"
         android:layout_marginTop="16dp"

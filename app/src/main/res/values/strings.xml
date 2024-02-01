@@ -27,4 +27,5 @@
     <string name="question">question</string>
     <string name="score">score</string>
     <string name="introduce_tu_respuesta">Introduce tu respuesta</string>
+    <string name="enhorabuena">Enhorabuena!</string>
 </resources>

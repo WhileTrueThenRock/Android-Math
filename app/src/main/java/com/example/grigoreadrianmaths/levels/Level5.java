@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.grigoreadrianmaths.R;
 import com.example.grigoreadrianmaths.dao.UserDAO;
 import com.example.grigoreadrianmaths.database.ConexionDB;
+import com.example.grigoreadrianmaths.viewModels.GameOverViewModel;
 import com.example.grigoreadrianmaths.viewModels.LevelSelectorViewModel;
 import com.example.grigoreadrianmaths.viewModels.LoginViewModel;
 
@@ -112,11 +113,6 @@ public class Level5 extends AppCompatActivity {
                 totalQuestions.setText(numero);
 
 
-            if(numeroDePreguntas==3){
-                intent = new Intent(Level5.this, LevelSelectorViewModel.class);
-                startActivity(intent);
-            }
-
             if (preguntaActualText.contains("cuadrática") && view.getId() == R.id.bt3) {
                 aciertos++;
                 if (vidas < 5)
@@ -124,7 +120,6 @@ public class Level5 extends AppCompatActivity {
                 correct();
                 updateScoreLvl5();
                 loadScore();
-                Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
 
             } else if (preguntaActualText.contains("Einstein") && view.getId() == R.id.bt2) {
                 aciertos++;
@@ -133,7 +128,6 @@ public class Level5 extends AppCompatActivity {
                 correct();
                 updateScoreLvl5();
                 loadScore();
-                Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
 
             }  else if (preguntaActualText.contains("Pitágoras") && view.getId() == R.id.bt1) {
                 aciertos++;
@@ -142,12 +136,17 @@ public class Level5 extends AppCompatActivity {
                 correct();
                 updateScoreLvl5();
                 loadScore();
-                Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
             }
             else{
                 vidas--;
                 incorrect();
-                Toast.makeText(this, "total vidas: "+vidas, Toast.LENGTH_SHORT).show();
+            }
+
+            if(numeroDePreguntas==3){
+                intent = new Intent(Level5.this, LevelSelectorViewModel.class);
+                intent.putExtra("vidas", vidas);
+                //intent.putExtra("nivel", 1);
+                startActivity(intent);
             }
 
 
@@ -163,6 +162,10 @@ public class Level5 extends AppCompatActivity {
                 healthBar.setImageResource(R.drawable.life_5);
             else if(vidas == 0) {
                 healthBar.setImageResource(R.drawable.life_0);
+                gameOver();
+                resetProgress();
+                intent = new Intent(Level5.this, GameOverViewModel.class);
+                startActivity(intent);
             }
 
             updateStarsLvl5();
@@ -172,6 +175,24 @@ public class Level5 extends AppCompatActivity {
         }
 
     }
+
+    public void resetProgress(){
+        String username =LoginViewModel.userTitle;
+        try {
+            if(userDAO.resetProgress(username)){
+                Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void gameOver(){
+        mediaPlayer = MediaPlayer.create(this,R.raw.game_over);
+        mediaPlayer.start();
+    }
+
+
     public void correct(){
         mediaPlayer = MediaPlayer.create(this,R.raw.correct);
         mediaPlayer.start();
@@ -187,7 +208,6 @@ public class Level5 extends AppCompatActivity {
         String username = LoginViewModel.userTitle;
         try {
             if(userDAO.registerScore(username,score)){
-                Toast.makeText(this, "puntuacion registrada", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "Nada que actualizar", Toast.LENGTH_SHORT).show();
@@ -202,7 +222,6 @@ public class Level5 extends AppCompatActivity {
         String username =LoginViewModel.userTitle;
         try {
             if(userDAO.registerStars(username,5,score)){
-                Toast.makeText(this, "puntuacion registrada", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "Nada que actualizar", Toast.LENGTH_SHORT).show();
