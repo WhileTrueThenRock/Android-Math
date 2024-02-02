@@ -54,10 +54,10 @@
             android:name=".viewModels.LevelSelectorViewModel"
             android:exported="false" />
         <activity
-            android:name=".viewModels.LoginViewModel"
+            android:name=".viewModels.RegisterViewModel"
             android:exported="false" />
         <activity
-            android:name=".viewModels.RegisterViewModel"
+            android:name=".viewModels.LoginViewModel"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

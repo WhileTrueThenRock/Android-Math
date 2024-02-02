@@ -53,4 +53,9 @@ public class LoginViewModel extends AppCompatActivity {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show();
         }
     }
+
+    public void loadRegisterPage(View view){
+        intent = new Intent(LoginViewModel.this, RegisterViewModel.class);
+        startActivity(intent);
+    }
 }

@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import com.example.grigoreadrianmaths.R;
 
+import java.util.ArrayList;
+
 public class AdapterPersonalizado extends BaseAdapter {
-    private String[] datos;
+    private ArrayList datos;
     private Context context;
     private LayoutInflater inflater;
 
-    public AdapterPersonalizado(Context applicationContext, String[] datos) {
+    public AdapterPersonalizado(Context applicationContext, ArrayList<String> datos) {
         this.context = applicationContext;
         this.datos = datos;
         this.inflater = LayoutInflater.from(applicationContext);
@@ -23,7 +25,7 @@ public class AdapterPersonalizado extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return datos.length;
+        return datos.size();
     }
 
     @Override
@@ -40,7 +42,7 @@ public class AdapterPersonalizado extends BaseAdapter {
     public View getView(int i, View view, ViewGroup parent) {
         view = inflater.inflate(R.layout.linearlayout, null);
         TextView texto = view.findViewById(R.id.textView);
-        texto.setText(datos[i]);
+        texto.setText(datos.get(i).toString());
 
         ImageView icon = view.findViewById(R.id.icon1);
         // Asigna el trofeo según la posición

@@ -116,8 +116,4 @@ public class RegisterViewModel extends AppCompatActivity {
         }
 
     }
-    public void go(View view){
-        intent = new Intent(RegisterViewModel.this,LoginViewModel.class);
-        startActivity(intent);
-    }
 }

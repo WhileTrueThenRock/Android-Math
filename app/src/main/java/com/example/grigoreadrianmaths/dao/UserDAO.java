@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDAO {
     private Connection connection;
@@ -33,6 +34,15 @@ public class UserDAO {
                 throw new RuntimeException(e);
             }
         }
+
+    public void createDatabase(){
+        String url = "jdbc:postgresql://mvs.sytes.net:12008/";
+
+    }
+
+    public void createTables(){
+
+    }
 
     public boolean createUser(String name,String surname,String username,String password) throws SQLException {
         boolean createOk = false;
@@ -143,6 +153,29 @@ public class UserDAO {
 
         return score;
     }
+
+    public ArrayList<String> getUserNamesFromDatabase() throws SQLException {
+        ArrayList<String> lista = new ArrayList<>();
+
+        try {
+            String query = "SELECT nombre FROM users ORDER BY points DESC LIMIT 4";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String nombreUsuario = resultSet.getString("nombre");
+                lista.add(nombreUsuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Maneja la excepción adecuadamente en un entorno de producción
+        }
+
+        return lista;
+    }
+
+
+
 
     public boolean registerStars(String username, int level, int newScore) throws SQLException {
         boolean updateOk = false;
