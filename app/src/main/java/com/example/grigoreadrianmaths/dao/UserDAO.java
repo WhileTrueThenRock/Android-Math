@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserDAO {
     private Connection connection;
@@ -35,14 +37,73 @@ public class UserDAO {
             }
         }
 
-    public void createDatabase(){
-        String url = "jdbc:postgresql://mvs.sytes.net:12008/";
+    public boolean createDatabase(){
+        boolean createOK = false;
+        if(!initDBConnection()){
+           return createOK;
+        }
 
+
+
+            try {
+                String query = "CREATE DATABASE math_test_delete"; //modificar la URL database
+                PreparedStatement  statement = connection.prepareStatement(query);
+                statement.execute();
+                createOK = true;
+
+            }catch (SQLException e){
+                System.err.println("Error de sql al crear la base de datos: " + e.getMessage());
+            }
+
+
+        return createOK;
     }
 
-    public void createTables(){
+    public boolean createTables() throws SQLException{
+        boolean createOk = false;
+        if(!initDBConnection()){
+            return createOk;
+        }
+        createDatabase();
 
+        try {
+            String checkQuery = "SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users'";
+            PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
+                ResultSet resultSet = checkStatement.executeQuery();
+                if (!resultSet.next()) {
+                    String query = "CREATE TABLE Users (\n" +
+                            "                       id SERIAL PRIMARY KEY,\n" +
+                            "                       nombre VARCHAR(50),\n" +
+                            "                       apellidos VARCHAR(50),\n" +
+                            "                       usuario VARCHAR(50) UNIQUE,\n" +
+                            "                       password VARCHAR(50),\n" +
+                            "                       points INTEGER DEFAULT 0,\n" +
+                            "                       stars_lvl1 INTEGER DEFAULT 0,\n" +
+                            "                       stars_lvl2 INTEGER DEFAULT 0,\n" +
+                            "                       stars_lvl3 INTEGER DEFAULT 0,\n" +
+                            "                       stars_lvl4 INTEGER DEFAULT 0,\n" +
+                            "                       stars_lvl5 INTEGER DEFAULT 0,\n" +
+                            "                       stars_lvl6 INTEGER DEFAULT 0,\n" +
+                            "                       stars_lvl7 INTEGER DEFAULT 0,\n" +
+                            "                       stars_lvl8 INTEGER DEFAULT 0,\n" +
+                            "                       rankingpoints INTEGER DEFAULT 0,\n" +
+                            "                       health INTEGER DEFAULT 5\n" +
+                            ");";
+                    PreparedStatement statement = connection.prepareStatement(query);
+                    int rowsAffected = statement.executeUpdate();
+                    if (rowsAffected > 0)
+                        createOk = true;
+                }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            closeDBConnection();
+        }
+
+        return createOk;
     }
+
 
     public boolean createUser(String name,String surname,String username,String password) throws SQLException {
         boolean createOk = false;
@@ -174,6 +235,28 @@ public class UserDAO {
         return lista;
     }
 
+    public Map<String, Integer> getScoresAndUsernamesFromDatabase() throws SQLException {
+        Map<String, Integer> scoresMap = new HashMap<String, Integer>();
+
+        try {
+            String query = "SELECT usuario, rankingpoints FROM users ORDER BY rankingpoints DESC LIMIT 4";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String username = resultSet.getString("usuario");
+                int score = resultSet.getInt("rankingpoints");
+                scoresMap.put(username, score);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Maneja la excepción adecuadamente en un entorno de producción
+        }
+
+        return scoresMap;
+    }
+
+
 
 
 
@@ -242,7 +325,7 @@ public class UserDAO {
             try {
                 // 1. Registrar la puntuación en el ranking
                 int currentPoints = loadScore(username);
-                registerScoreInRanking(username, currentPoints);
+                registerScoreInRanking( currentPoints,username);
 
 
                 String query = "UPDATE users SET points = 0, stars_lvl1 = 0, stars_lvl2 = 0, stars_lvl3 = 0, " +
@@ -262,7 +345,7 @@ public class UserDAO {
             }
         }
 
-    private void registerScoreInRanking(String username, int score) {
+    public void registerScoreInRanking( int score,String username) {
         if (!initDBConnection()) {
             return;
         }
@@ -275,7 +358,47 @@ public class UserDAO {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error"+e.getMessage());
+        }
+    }
+
+    public boolean updateHealth(String username, int health) {
+        boolean updateok = false;
+        connection = conexionDB.initDBConnection();
+        if (!initDBConnection()) {
+            return updateok;
+        }
+        try {
+            String query = "UPDATE users SET health = ? WHERE usuario = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, health);
+            statement.setString(2, username);
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            conexionDB.closeDBConnection(connection);
+        }
+    }
+
+    public int getHealth(String username) {
+        try {
+            String query = "SELECT health FROM users WHERE usuario = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("health");
+            } else {
+                // Si no se encuentra el usuario, puedes devolver un valor predeterminado
+                return 100; // o cualquier otro valor predeterminado
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 100; // o cualquier otro valor predeterminado
         }
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.grigoreadrianmaths.R;
@@ -33,5 +34,14 @@ private Intent intent;
     public void loadRankings(View view) {
         intent = new Intent(Levels_finished.this, RankingViewModel.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

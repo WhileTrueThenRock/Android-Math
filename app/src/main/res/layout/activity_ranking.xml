@@ -19,7 +19,7 @@
         android:contentDescription="@string/lvl1"
         android:scaleType="fitCenter"
         android:onClick="MainMenu"
-        app:srcCompat="@drawable/mainmenu" />
+        app:srcCompat="@drawable/loadmainmenu" />
 
     <GridView
         android:id="@+id/grid"
@@ -27,5 +27,16 @@
         android:layout_height="337dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="170dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="160dp"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:text="@string/nombre_puntuaci_n" />
 
 </RelativeLayout>

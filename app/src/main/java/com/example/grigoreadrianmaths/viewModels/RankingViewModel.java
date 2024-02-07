@@ -12,6 +12,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.grigoreadrianmaths.R;
 import com.example.grigoreadrianmaths.dao.UserDAO;
@@ -21,10 +22,14 @@ import com.example.grigoreadrianmaths.models.AdapterPersonalizado;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RankingViewModel extends AppCompatActivity {
     private int[] logos = {R.drawable.bronze,R.drawable.silver,R.drawable.gold,R.drawable.platinum};
     ArrayList<String> players = new ArrayList<String>();
+
+    private int [] scores;
 
     private Intent intent;
     private GridView grid;
@@ -38,7 +43,7 @@ public class RankingViewModel extends AppCompatActivity {
         userDAO = new UserDAO(connection);
         grid = findViewById(R.id.grid);
         loadRankingScore();
-        AdapterPersonalizado adapter = new AdapterPersonalizado(this,players);
+        AdapterPersonalizado adapter = new AdapterPersonalizado(this,players,scores);
         grid.setAdapter(adapter);
 
 
@@ -49,11 +54,36 @@ public class RankingViewModel extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void loadRankingScore(){
+    public void loadRankingScore() {
         try {
-            players = userDAO.getUserNamesFromDatabase();
+            Map<String, Integer> scoresMap = userDAO.getScoresAndUsernamesFromDatabase();
+            players = new ArrayList<>(scoresMap.keySet());
+            scores = new int[players.size()];
+
+            for (int i = 0; i < players.size(); i++) {
+                scores[i] = scoresMap.get(players.get(i));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void loadScore() {
+        String username =LoginViewModel.userTitle;
+        try {
+            int puntos = userDAO.loadScore(username);
+            userDAO.registerScoreInRanking(puntos,username);
+        } catch (SQLException e) {
+            Toast.makeText(this, "Error al actualizar puntos", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.grigoreadrianmaths.viewModels;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,6 +15,7 @@ import com.example.grigoreadrianmaths.dao.UserDAO;
 import com.example.grigoreadrianmaths.database.ConexionDB;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class LoginViewModel extends AppCompatActivity {
     private EditText name,surname,username,password,confirmPassword;
@@ -21,16 +23,38 @@ public class LoginViewModel extends AppCompatActivity {
     private Connection connection;
     private Intent intent;
     public static String userTitle;
+    private boolean shouldAllowBack = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         connection = ConexionDB.initDBConnection();
         userDAO = new UserDAO(connection);
-
+        createDatabaseAndTables();
         username = findViewById(R.id.et_username);
         password = findViewById(R.id.et_password);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void createDatabaseAndTables(){
+        try {
+            userDAO.createTables();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void login(View view) {

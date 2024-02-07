@@ -37,7 +37,7 @@ public class Level8 extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private UserDAO userDAO;
     private Connection connection;
-    public static int vidas = 5;
+    public static int vidas;
     private ImageView healthBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class Level8 extends AppCompatActivity {
 
         connection = ConexionDB.initDBConnection();
         userDAO = new UserDAO(connection);
-
+        vidas = userDAO.getHealth(LoginViewModel.userTitle);
         numeroDePreguntas = 0;
         aciertos = 0;
         preguntas.clear();
@@ -78,6 +78,18 @@ public class Level8 extends AppCompatActivity {
         loadQuestions();
         loadScore();
     }
+
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     public void loadQuestions() {
         preguntaAleatoria = random.nextInt(preguntas.size());
         preguntaActualText = (String) preguntas.get(preguntaAleatoria);
@@ -137,11 +149,11 @@ public class Level8 extends AppCompatActivity {
             }
 
             if(numeroDePreguntas==3){
-                intent = new Intent(Level8.this, LevelSelectorViewModel.class);
-                intent.putExtra("vidas", vidas);
+                userDAO.updateHealth(LoginViewModel.userTitle, vidas);
                 mediaPlayer = MediaPlayer.create(this,R.raw.never_gonna_give_you_up);
                 mediaPlayer.start();
                 intent = new Intent(Level8.this, Levels_finished.class);
+                intent.putExtra("score", aciertos);
                 startActivity(intent);
             }
 

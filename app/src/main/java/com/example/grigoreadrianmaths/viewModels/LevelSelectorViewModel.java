@@ -91,13 +91,24 @@ public class LevelSelectorViewModel extends AppCompatActivity {
         usuario.setText(username);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.pi_logo);
-        int cantidadDeVidas = getIntent().getIntExtra("vidas",5);
-        int numeroDeNivel = getIntent().getIntExtra("nivel", 1);
-        updateHealth(cantidadDeVidas);
+
+        int estadoDeSalud = userDAO.getHealth(LoginViewModel.userTitle);
+         //cantidadDeVidas = getIntent().getIntExtra("vidas",5);
+        updateHealth(estadoDeSalud);
 
         loadStars();
         loadScore();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void updateHealth(int vidas) {
         int drawableId;
@@ -124,8 +135,8 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                 break;
         }
         healthBar.setImageResource(drawableId);
-
     }
+
 
     public void resetProgress(){
         String username =LoginViewModel.userTitle;
@@ -262,6 +273,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
         String username =LoginViewModel.userTitle;
         try {
             int puntos = userDAO.loadScore(username);
+            userDAO.registerScoreInRanking(puntos,username);
             score.setText(String.valueOf(puntos));
         } catch (SQLException e) {
             Toast.makeText(this, "Error al actualizar puntos", Toast.LENGTH_SHORT).show();
@@ -286,7 +298,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
     private void showConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmación");
-        builder.setMessage("¿Estás seguro de que quieres borrar todo tu progreso?");
+        builder.setMessage("¿Estás seguro de que quieres borrar todo tu progreso? [Incluido Ranking]");
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -295,6 +307,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                 intent = new Intent(LevelSelectorViewModel.this, LevelSelectorViewModel.class);
                 startActivity(intent);
                 healthBar.setImageResource(R.drawable.life_100);
+                userDAO.updateHealth(LoginViewModel.userTitle,5);
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -313,7 +326,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
 
     public void loadLvl1(View view){
         if(lvl1Enabled==false){
-            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
+            intent = new Intent(LevelSelectorViewModel.this, Level1.class);
             startActivity(intent);
         }
         else{

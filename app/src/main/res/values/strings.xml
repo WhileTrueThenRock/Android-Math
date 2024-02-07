@@ -28,4 +28,5 @@
     <string name="score">score</string>
     <string name="introduce_tu_respuesta">Introduce tu respuesta</string>
     <string name="enhorabuena">Enhorabuena!</string>
+    <string name="nombre_puntuaci_n">Nombre / Puntuación</string>
 </resources>

@@ -36,7 +36,7 @@ public class Level5 extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private UserDAO userDAO;
     private Connection connection;
-    public static int vidas = 5;
+    public static int vidas;
     private ImageView healthBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class Level5 extends AppCompatActivity {
 
         connection = ConexionDB.initDBConnection();
         userDAO = new UserDAO(connection);
-
+        vidas = userDAO.getHealth(LoginViewModel.userTitle);
         numeroDePreguntas = 0;
         aciertos = 0;
         preguntas.clear();
@@ -80,15 +80,25 @@ public class Level5 extends AppCompatActivity {
         loadScore();
     }
 
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void loadQuestions() {
         preguntaAleatoria = random.nextInt(preguntas.size());
         preguntaActualText = (String) preguntas.get(preguntaAleatoria);
         pregunta.setText(preguntaActualText);
 
         if(preguntaActualText.contains("cuadrática")){
-            bt1.setImageResource(R.drawable.pitagoras2);
-            bt2.setImageResource(R.drawable.pitagoras3);
-            bt3.setImageResource(R.drawable.pitagoras1);
+            bt1.setImageResource(R.drawable.formula1);
+            bt2.setImageResource(R.drawable.formula2);
+            bt3.setImageResource(R.drawable.formula3);
         }
         else if(preguntaActualText.contains("Einstein")){
             bt1.setImageResource(R.drawable.relatividad2);
@@ -97,9 +107,9 @@ public class Level5 extends AppCompatActivity {
 
         }
         else if(preguntaActualText.contains("Pitágoras")){
-            bt1.setImageResource(R.drawable.formula1);
-            bt2.setImageResource(R.drawable.formula2);
-            bt3.setImageResource(R.drawable.formula3);
+            bt1.setImageResource(R.drawable.pitagoras1);
+            bt2.setImageResource(R.drawable.pitagoras2);
+            bt3.setImageResource(R.drawable.pitagoras3);
         }
 
         preguntas.remove(preguntaAleatoria); // Eliminar la pregunta mostrada de la lista
@@ -113,7 +123,7 @@ public class Level5 extends AppCompatActivity {
                 totalQuestions.setText(numero);
 
 
-            if (preguntaActualText.contains("cuadrática") && view.getId() == R.id.bt3) {
+            if (preguntaActualText.contains("cuadrática") && view.getId() == R.id.bt1) {
                 aciertos++;
                 if (vidas < 5)
                     vidas++;
@@ -144,8 +154,8 @@ public class Level5 extends AppCompatActivity {
 
             if(numeroDePreguntas==3){
                 intent = new Intent(Level5.this, LevelSelectorViewModel.class);
-                intent.putExtra("vidas", vidas);
-                //intent.putExtra("nivel", 1);
+                //intent.putExtra("vidas", vidas);
+                userDAO.updateHealth(LoginViewModel.userTitle, vidas);
                 startActivity(intent);
             }
 

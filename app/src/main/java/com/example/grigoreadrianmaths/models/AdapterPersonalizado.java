@@ -15,11 +15,12 @@ import java.util.ArrayList;
 public class AdapterPersonalizado extends BaseAdapter {
     private ArrayList datos;
     private Context context;
+    private int[] scores;
     private LayoutInflater inflater;
-
-    public AdapterPersonalizado(Context applicationContext, ArrayList<String> datos) {
+    public AdapterPersonalizado(Context applicationContext, ArrayList<String> datos, int[] scores) {
         this.context = applicationContext;
         this.datos = datos;
+        this.scores = scores;
         this.inflater = LayoutInflater.from(applicationContext);
     }
 
@@ -40,37 +41,39 @@ public class AdapterPersonalizado extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup parent) {
-        view = inflater.inflate(R.layout.linearlayout, null);
-        TextView texto = view.findViewById(R.id.textView);
-        texto.setText(datos.get(i).toString());
+        if (view == null) {
+            view = inflater.inflate(R.layout.linearlayout, null);
+        }
 
-        ImageView icon = view.findViewById(R.id.icon1);
+        TextView texto = view.findViewById(R.id.textView);
+        texto.setText(datos.get(i).toString() + " | " + scores[i]);
+
+        ImageView icono = view.findViewById(R.id.icon1);
+
         // Asigna el trofeo según la posición
         if (i < 4) {
             // Para los primeros 4 elementos
-            int trofeoResourceId = getTrophyResource(i);
-            icon.setImageResource(trofeoResourceId);
+            int trofeoResourceId = getTrophyResource(scores[i]);
+            icono.setImageResource(trofeoResourceId);
         } else {
             // Por defecto, asigna bronce para los demás
-            icon.setImageResource(R.drawable.bronze);
+            icono.setImageResource(R.drawable.bronze);
         }
 
         return view;
     }
 
-    // Método para obtener el recurso del trofeo según la posición
-    private int getTrophyResource(int position) {
-        switch (position) {
-            case 0:
-                return R.drawable.platinum; // Primer lugar - Oro
-            case 1:
-                return R.drawable.gold; // Segundo lugar - Plata
-            case 2:
-                return R.drawable.silver; // Tercer lugar - Bronce
-            case 3:
-                return R.drawable.bronze; // Cuarto lugar - Platino
-            default:
-                return R.drawable.bronze; // Por si acaso
+
+
+    private int getTrophyResource(int score) {
+        if (score >= 24) {
+            return R.drawable.platinum;
+        } else if (score >= 16) {
+            return R.drawable.gold;
+        } else if (score >= 8) {
+            return R.drawable.silver;
+        } else {
+            return R.drawable.bronze;
         }
     }
 }

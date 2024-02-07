@@ -21,7 +21,7 @@ public class InfoMessageViewModel extends AppCompatActivity {
     private Intent intent;
     private UserDAO userDAO;
     private Connection connection;
-
+    private int cantidadDeVidas;
 
 
     @Override
@@ -34,6 +34,7 @@ public class InfoMessageViewModel extends AppCompatActivity {
         userName.setText(usuario);
         connection = ConexionDB.initDBConnection();
         userDAO = new UserDAO(connection);
+        cantidadDeVidas = getIntent().getIntExtra("vidas",5);
 
         loadScore();
     }
@@ -41,7 +42,9 @@ public class InfoMessageViewModel extends AppCompatActivity {
 
     public void loadMainMenu(View view) {
         intent = new Intent(InfoMessageViewModel.this, LevelSelectorViewModel.class);
+        intent.putExtra("vidas", cantidadDeVidas);
         startActivity(intent);
+
     }
 
     public void loadScore() {
@@ -51,6 +54,15 @@ public class InfoMessageViewModel extends AppCompatActivity {
             score.setText(String.valueOf(puntos));
         } catch (SQLException e) {
             Toast.makeText(this, "Error al actualizar puntos", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
         }
     }
 }

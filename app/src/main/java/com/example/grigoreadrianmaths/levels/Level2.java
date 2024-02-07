@@ -36,7 +36,7 @@ public class Level2 extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private UserDAO userDAO;
     private Connection connection;
-    public static int vidas = 5;
+    public static int vidas;
     private ImageView healthBar;
 
     @Override
@@ -57,6 +57,7 @@ public class Level2 extends AppCompatActivity {
         connection = ConexionDB.initDBConnection();
         userDAO = new UserDAO(connection);
 
+        vidas = userDAO.getHealth(LoginViewModel.userTitle);
         numeroDePreguntas = 0;
         aciertos = 0;
         preguntas.clear();
@@ -80,6 +81,15 @@ public class Level2 extends AppCompatActivity {
         loadQuestions();
         loadScore();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void loadQuestions() {
@@ -146,8 +156,8 @@ public class Level2 extends AppCompatActivity {
 
             if(numeroDePreguntas==3){
                 intent = new Intent(Level2.this, LevelSelectorViewModel.class);
-                intent.putExtra("vidas", vidas);
-                //intent.putExtra("nivel", 1);
+                //intent.putExtra("vidas", vidas);
+                userDAO.updateHealth(LoginViewModel.userTitle, vidas);
                 startActivity(intent);
             }
 

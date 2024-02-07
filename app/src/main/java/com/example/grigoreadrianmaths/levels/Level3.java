@@ -37,7 +37,7 @@ public class Level3 extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private UserDAO userDAO;
     private Connection connection;
-    public static int vidas = 5;
+    public static int vidas;
     private ImageView healthBar;
     private RelativeLayout relativeLayout;
     @Override
@@ -58,7 +58,7 @@ public class Level3 extends AppCompatActivity {
 
         connection = ConexionDB.initDBConnection();
         userDAO = new UserDAO(connection);
-
+        vidas = userDAO.getHealth(LoginViewModel.userTitle);
         numeroDePreguntas = 0;
         aciertos = 0;
         preguntas.clear();
@@ -82,6 +82,15 @@ public class Level3 extends AppCompatActivity {
         loadQuestions();
         loadScore();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Usa los botones de la App!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void loadQuestions() {
@@ -127,7 +136,7 @@ public class Level3 extends AppCompatActivity {
                 updateScoreLvl3();
                 loadScore();
 
-            } else if (preguntaActualText.contains("caracol") && view.getId() == R.id.bt3) {
+            } else if (preguntaActualText.contains("caracol") && view.getId() == R.id.bt1) {
                 aciertos++;
                 if (vidas < 5)
                     vidas++;
@@ -150,8 +159,8 @@ public class Level3 extends AppCompatActivity {
 
             if(numeroDePreguntas==3){
                 intent = new Intent(Level3.this, LevelSelectorViewModel.class);
-                intent.putExtra("vidas", vidas);
-                //intent.putExtra("nivel", 1);
+                //intent.putExtra("vidas", vidas);
+                userDAO.updateHealth(LoginViewModel.userTitle, vidas);
                 startActivity(intent);
             }
 
