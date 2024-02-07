@@ -136,7 +136,7 @@ public class Level3 extends AppCompatActivity {
                 updateScoreLvl3();
                 loadScore();
 
-            } else if (preguntaActualText.contains("caracol") && view.getId() == R.id.bt1) {
+            } else if (preguntaActualText.contains("caracol") && view.getId() == R.id.bt1) { //Cambio de 1 a 3
                 aciertos++;
                 if (vidas < 5)
                     vidas++;
