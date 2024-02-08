@@ -46,7 +46,7 @@ public class UserDAO {
 
 
             try {
-                String query = "CREATE DATABASE math_test_delete"; //modificar la URL database
+                String query = "CREATE DATABASE maths"; //modificar la URL database
                 PreparedStatement  statement = connection.prepareStatement(query);
                 statement.execute();
                 createOK = true;
