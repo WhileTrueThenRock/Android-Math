@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class UserDAO {
@@ -236,7 +237,8 @@ public class UserDAO {
     }
 
     public Map<String, Integer> getScoresAndUsernamesFromDatabase() throws SQLException {
-        Map<String, Integer> scoresMap = new HashMap<String, Integer>();
+        Map<String, Integer> scoresMap = new LinkedHashMap<>(); //Con HashMap nao funçona
+        //Devuelve scoresMap en un orden aleatorio y al usar LinkedHashMap me mantiene el orden del query
 
         try {
             String query = "SELECT usuario, rankingpoints FROM users ORDER BY rankingpoints DESC LIMIT 4";

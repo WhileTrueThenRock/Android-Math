@@ -43,8 +43,6 @@ public class RankingViewModel extends AppCompatActivity {
         userDAO = new UserDAO(connection);
         grid = findViewById(R.id.grid);
         loadRankingScore();
-        AdapterPersonalizado adapter = new AdapterPersonalizado(this,players,scores);
-        grid.setAdapter(adapter);
 
 
     }
@@ -63,6 +61,8 @@ public class RankingViewModel extends AppCompatActivity {
             for (int i = 0; i < players.size(); i++) {
                 scores[i] = scoresMap.get(players.get(i));
             }
+            AdapterPersonalizado adapter = new AdapterPersonalizado(this,players,scores);
+            grid.setAdapter(adapter);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
