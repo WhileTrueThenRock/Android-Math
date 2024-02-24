@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
+        android:text="@string/iniciar_sesi_n"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginTop="102dp"
@@ -62,25 +62,25 @@
         android:layout_below="@+id/bt_login"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:text="@string/no_tienes_cuenta" />
+
+
+
+    <TextView
+        android:id="@+id/tv_Registrar"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="130dp"
+        android:layout_below="@+id/et_registrate"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:onClick="loadRegisterPage"
         android:textColor="@color/blue"
         android:layout_marginTop="20dp"
-        android:text="¿No tienes cuénta? " />
+        android:text="@string/reg_strate" />
 
-
-
-    <ImageButton
-        android:id="@+id/bt_lout"
-        android:layout_width="82dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="38dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/et_registrate"
-        android:adjustViewBounds="true"
-        android:background="@null"
-        android:contentDescription="@string/lvl8"
-        android:onClick="loadRegisterPage"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/register_button" />
 
 
 </RelativeLayout>

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.GrigoreAdrianMaths"
         tools:targetApi="31">
         <activity
+            android:name=".viewModels.InfoLvl8ViewModel"
+            android:exported="false" />
+        <activity
             android:name=".viewModels.InfoMessageViewModel"
             android:exported="false" />
         <activity

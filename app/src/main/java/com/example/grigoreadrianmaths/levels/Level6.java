@@ -64,7 +64,7 @@ public class Level6 extends AppCompatActivity {
 
         preguntas.add("Completa la siguiente secuencia numérica");
         preguntas.add("Indica cuál es el número tapado por el coche");
-        preguntas.add("Indica el número primo");
+        preguntas.add("Cuál es el único número primo de la lista?");
 
 
         if(vidas == 4)

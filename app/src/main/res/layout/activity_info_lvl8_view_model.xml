@@ -53,7 +53,7 @@
         android:layout_height="225dp"
         android:layout_marginTop="280dp"
         android:layout_marginEnd="52dp"
-        android:text="@string/ya_has_conseguido_la_puntuaci_n_necesaria_para_avanzar_al_siguiente_nivel_para_una_justa_y_mejor_experiencia_podr_s_volver_a_jugar_este_nivel_una_vez_termines_la_partida"
+        android:text="@string/ya_has_conseguido_la_puntuaci_n_m_xima_para_el_juego_para_una_justa_y_mejor_experiencia_podr_s_volver_a_jugar_este_nivel_una_vez_reinicies_tu_progreso"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -225,6 +225,9 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                     lvl5.setImageResource(R.drawable.lvl5_1);
                 } else if (estrellas == 2 && nivel == 5) {
                     lvl5.setImageResource(R.drawable.lvl5_2);
+                    lvl6.setEnabled(true);
+                    lvl6.setImageResource(R.drawable.lvl6);
+                    lvl5Enabled = false;
                 } else if (estrellas == 3 && nivel == 5) {
                     lvl5.setImageResource(R.drawable.lvl5_3);
                     lvl6.setEnabled(true);
@@ -254,8 +257,10 @@ public class LevelSelectorViewModel extends AppCompatActivity {
                 }//-------------------NIVEL8---------------------
                 else if (estrellas == 1 && nivel == 8) {
                     lvl8.setImageResource(R.drawable.lvl8_1);
+                    lvl8Enabled = false;
                 } else if (estrellas == 2 && nivel == 8) {
                     lvl8.setImageResource(R.drawable.lvl8_2);
+                    lvl8Enabled = false;
                 } else if (estrellas == 3 && nivel == 8) {
                     lvl8.setImageResource(R.drawable.lvl8_3);
                     lvl8Enabled = false;
@@ -326,7 +331,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
 
     public void loadLvl1(View view){
         if(lvl1Enabled==false){
-            intent = new Intent(LevelSelectorViewModel.this, Level1.class);
+            intent = new Intent(LevelSelectorViewModel.this, InfoMessageViewModel.class);
             startActivity(intent);
         }
         else{

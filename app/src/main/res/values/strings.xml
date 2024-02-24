@@ -29,4 +29,10 @@
     <string name="introduce_tu_respuesta">Introduce tu respuesta</string>
     <string name="enhorabuena">Enhorabuena!</string>
     <string name="nombre_puntuaci_n">Nombre / Puntuación</string>
+    <string name="puntos">Puntos:</string>
+    <string name="ya_has_conseguido_la_puntuaci_n_necesaria_para_avanzar_al_siguiente_nivel_para_una_justa_y_mejor_experiencia_podr_s_volver_a_jugar_este_nivel_una_vez_termines_la_partida">-Ya has conseguido la puntuación necesaria para avanzar al siguiente nivel. ----------------------------------------Para una justa y mejor experiencia, podrás volver a jugar este nivel una vez termines la partida.</string>
+    <string name="ya_has_conseguido_la_puntuaci_n_m_xima_para_el_juego_para_una_justa_y_mejor_experiencia_podr_s_volver_a_jugar_este_nivel_una_vez_reinicies_tu_progreso">-Ya has conseguido la puntuación máxima para el juego. ----------------------------------------Para una justa y mejor experiencia, podrás volver a jugar este nivel una vez reinicies tu progreso.</string>
+    <string name="iniciar_sesi_n">Iniciar Sesión</string>
+    <string name="no_tienes_cuenta">¿No tienes cuenta?</string>
+    <string name="reg_strate">Regístrate!</string>
 </resources>
