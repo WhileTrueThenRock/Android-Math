@@ -38,7 +38,7 @@ public class UserDAO {
             }
         }
 
-    public boolean createDatabase(){
+    public boolean createDatabase(){ //Unique DB
         boolean createOK = false;
         if(!initDBConnection()){
            return createOK;
@@ -60,7 +60,7 @@ public class UserDAO {
         return createOK;
     }
 
-    public boolean createTables() throws SQLException{
+    public boolean createTables() throws SQLException{ //tables
         boolean createOk = false;
         if(!initDBConnection()){
             return createOk;
@@ -106,7 +106,7 @@ public class UserDAO {
     }
 
 
-    public boolean createUser(String name,String surname,String username,String password) throws SQLException {
+    public boolean createUser(String name,String surname,String username,String password) throws SQLException { //RegisterVM
         boolean createOk = false;
         if(!initDBConnection()){
             return createOk;
@@ -132,7 +132,7 @@ public class UserDAO {
         return createOk;
     }
 
-    public boolean login(String username, String password) throws SQLException {
+    public boolean login(String username, String password) throws SQLException { //LoginVM
         boolean login = false;
 
         if(!initDBConnection()){
@@ -160,7 +160,7 @@ public class UserDAO {
         return login;
     }
 
-    public boolean registerScore(String username, int newScore) throws SQLException{
+    public boolean registerScore(String username, int newScore) throws SQLException{ //After each LVL I register the score
         boolean updateOk = false;
 
         if (!initDBConnection()) {
@@ -189,7 +189,7 @@ public class UserDAO {
         return updateOk;
     }
 
-    public int loadScore(String username) throws SQLException{
+    public int loadScore(String username) throws SQLException{ //Update after completion
         int score = 0;
 
         if (!initDBConnection()) {
@@ -216,27 +216,9 @@ public class UserDAO {
         return score;
     }
 
-    public ArrayList<String> getUserNamesFromDatabase() throws SQLException {
-        ArrayList<String> lista = new ArrayList<>();
 
-        try {
-            String query = "SELECT nombre FROM users ORDER BY points DESC LIMIT 4";
-            PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                String nombreUsuario = resultSet.getString("nombre");
-                lista.add(nombreUsuario);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Maneja la excepción adecuadamente en un entorno de producción
-        }
-
-        return lista;
-    }
-
-    public Map<String, Integer> getScoresAndUsernamesFromDatabase() throws SQLException {
+    public Map<String, Integer> getScoresAndUsernamesFromDatabase() throws SQLException { //RankingVM
         Map<String, Integer> scoresMap = new LinkedHashMap<>(); //Con HashMap nao funçona
         //Devuelve scoresMap en un orden aleatorio y al usar LinkedHashMap me mantiene el orden del query
 
@@ -262,7 +244,7 @@ public class UserDAO {
 
 
 
-    public boolean registerStars(String username, int level, int newScore) throws SQLException {
+    public boolean registerStars(String username, int level, int newScore) throws SQLException { //Register after each lvl completion
         boolean updateOk = false;
 
         if (!initDBConnection()) {
@@ -291,7 +273,7 @@ public class UserDAO {
         return updateOk;
     }
 
-    public int loadStars(String username, int level){
+    public int loadStars(String username, int level){ //update after completion
         int stars = 0;
 
         if (!initDBConnection()) {
@@ -318,8 +300,7 @@ public class UserDAO {
     }
 
 
-
-        public boolean resetProgress(String username) throws SQLException {
+        public boolean resetProgress(String username) throws SQLException { //Start over
             if (!initDBConnection()) {
                 return false;
             }
@@ -347,7 +328,7 @@ public class UserDAO {
             }
         }
 
-    public void registerScoreInRanking( int score,String username) {
+    public void registerScoreInRanking( int score,String username) { //Register points in DB
         if (!initDBConnection()) {
             return;
         }
@@ -364,7 +345,7 @@ public class UserDAO {
         }
     }
 
-    public boolean updateHealth(String username, int health) {
+    public boolean updateHealth(String username, int health) { //Update health after each Q
         boolean updateok = false;
         connection = conexionDB.initDBConnection();
         if (!initDBConnection()) {
@@ -404,7 +385,25 @@ public class UserDAO {
         }
     }
 
+    public ArrayList<String> getUserNamesFromDatabase() throws SQLException {
+        ArrayList<String> lista = new ArrayList<>();
 
+        try {
+            String query = "SELECT nombre FROM users ORDER BY points DESC LIMIT 4";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String nombreUsuario = resultSet.getString("nombre");
+                lista.add(nombreUsuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Maneja la excepción adecuadamente en un entorno de producción
+        }
+
+        return lista;
+    }
 
 
 

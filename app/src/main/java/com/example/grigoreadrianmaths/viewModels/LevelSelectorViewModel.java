@@ -76,6 +76,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
         constraintLayout = findViewById(R.id.myConstraintLayout);
         score = findViewById(R.id.tv_score);
         healthBar = findViewById(R.id.healthBar);
+
         lvl2.setEnabled(false);
         lvl3.setEnabled(false);
         lvl4.setEnabled(false);
@@ -92,7 +93,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.pi_logo);
 
-        int estadoDeSalud = userDAO.getHealth(LoginViewModel.userTitle);
+        int estadoDeSalud = userDAO.getHealth(LoginViewModel.userTitle); //Actualizamos el nivel de vida
          //cantidadDeVidas = getIntent().getIntExtra("vidas",5);
         updateHealth(estadoDeSalud);
 
@@ -151,7 +152,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
 
 
     public void loadStars(){
-        String username =LoginViewModel.userTitle;
+        String username = LoginViewModel.userTitle;
         try {
             for (int nivel = 1; nivel <= 8; nivel++) {
                 int estrellas = userDAO.loadStars(username, nivel);
@@ -285,20 +286,7 @@ public class LevelSelectorViewModel extends AppCompatActivity {
         }
     }
 
-    public boolean onCreateOptionsMenu (Menu menu) {
-        getMenuInflater().inflate(R.menu.mimenu,menu);
-        return true;
-    }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.item1) {
-            intent = new Intent(LevelSelectorViewModel.this, RankingViewModel.class);
-            startActivity(intent);
-        } else if(item.getItemId() == R.id.item2) {
-                showConfirmationDialog();
-        }
-        return true;
-    }
 
     private void showConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -417,5 +405,20 @@ public class LevelSelectorViewModel extends AppCompatActivity {
     public void logOut(View view){
         intent = new Intent(LevelSelectorViewModel.this, LoginViewModel.class);
         startActivity(intent);
+    }
+
+    public boolean onCreateOptionsMenu (Menu menu) {
+        getMenuInflater().inflate(R.menu.mimenu,menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.item1) {
+            intent = new Intent(LevelSelectorViewModel.this, RankingViewModel.class);
+            startActivity(intent);
+        } else if(item.getItemId() == R.id.item2) {
+            showConfirmationDialog();
+        }
+        return true;
     }
 }

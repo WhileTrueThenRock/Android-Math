@@ -59,6 +59,7 @@ import java.util.Random;
         r2 = findViewById(R.id.respuesta2);
         r3 = findViewById(R.id.respuesta3);
         healthBar = findViewById(R.id.healthBar);
+
         String username =LoginViewModel.userTitle;
         userName.setText(username);
         connection = ConexionDB.initDBConnection();
@@ -112,7 +113,7 @@ import java.util.Random;
         }
 
     public void loadQuestions() {
-            preguntaAleatoria = random.nextInt(preguntas.size());
+            preguntaAleatoria = random.nextInt(preguntas.size()); //Numero aleatorio del 1 al 3
             preguntaActualText = (String) preguntas.get(preguntaAleatoria);
             pregunta.setText(preguntaActualText);
             if(preguntaActualText.contains("granja")){
